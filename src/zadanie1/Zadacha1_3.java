@@ -8,7 +8,7 @@ public class Zadacha1_3 {
         int c = -42;                                            //дублирование переменной для операций со смещением
         int n = 3;                                              //кол-во смещений
 
-        System.out.println("Побитовый унарный оператор NOT");
+        System.out.println("Побитовый унарный NOT");
         System.out.println(~a);                                 //~11010110 результат 41 (00101001)
         System.out.println(~b);                                 //~11110001 результат 14 (00001110)
         System.out.println();
