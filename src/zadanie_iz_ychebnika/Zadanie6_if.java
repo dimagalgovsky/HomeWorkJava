@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Zadanie6_if {
     public static void main(String[] args){
+
         Scanner in = new Scanner(System.in);
         System.out.println("Введите число");
         int chislo = in.nextInt();

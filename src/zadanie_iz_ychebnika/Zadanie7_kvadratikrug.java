@@ -17,8 +17,9 @@ public class Zadanie7_kvadratikrug {
         System.out.println("Введиет радиус круга");
         int r = in2.nextInt();
 
+        boolean uslovie = (Math.sqrt(a*a+b*b)<=2*r);
 
-        if (Math.sqrt(a*a+b*b)<=2*r)
+        if (uslovie)
             System.out.println("True");
         else
             System.out.println("False");

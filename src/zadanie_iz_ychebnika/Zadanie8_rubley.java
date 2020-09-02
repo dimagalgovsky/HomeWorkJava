@@ -10,18 +10,28 @@ public class Zadanie8_rubley {
         System.out.println("Введите сумму");
         int summa = in.nextInt();
 
-        if (summa%10==1 && summa%100!=11)
-            System.out.println(summa +" "+"Рубль");
-        if (summa%10==2 && summa%100!=12)
-            System.out.println(summa +" "+"Рубля");
-        if (summa%10==3 && summa%100!=13)
-            System.out.println(summa +" "+"Рубля");
-        if (summa%10==4 && summa%100!=14)
-            System.out.println(summa +" "+"Рубля");
-        if (summa%100>=5 && summa%100<=20)
+        if (summa%10==0) {
+            System.out.println(summa + " " + "Рублей");
+            return;
+        }
+        if (summa%10==1 && summa%100!=11) {
+            System.out.println(summa + " " + "Рубль");
+            return;
+        }
+        if (summa%10==2 && summa%100!=12) {
+            System.out.println(summa + " " + "Рубля");
+            return;
+        }
+        if (summa%10==3 && summa%100!=13) {
+            System.out.println(summa + " " + "Рубля");
+            return;
+        }
+        if (summa%10==4 && summa%100!=14) {
+            System.out.println(summa + " " + "Рубля");
+        }
+        else
             System.out.println(summa +" "+"Рублей");
-        if (summa%10==0)
-            System.out.println(summa +" "+"Рублей");
+
 
     }
 
