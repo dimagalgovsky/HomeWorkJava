@@ -11,8 +11,9 @@ public class Zadanie6_if {
         int chislo = in.nextInt();
 
         if (chislo%10==7)
-            System.out.println("True");         //по заданию вернуть boolean значение
+            System.out.println("True");         //по заданию вернуть boolean значение, через return
         else
             System.out.println("False");
+
     }
 }
