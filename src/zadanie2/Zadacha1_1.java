@@ -7,10 +7,8 @@ import static java.lang.String.join;
 public class Zadacha1_1 {
     public static void main(String [] args) {
 
-        //for (String arg : args) {
-
-         //   int chislo = Integer.parseInt(arg.trim());
-            int chislo = 5;
+        for (String arg : args) {
+            int chislo = Integer.parseInt(arg.trim());
             long result = 1;
 
             for (int i = 1; i <= chislo; i++) {
@@ -21,7 +19,7 @@ public class Zadacha1_1 {
                 }
             }
             System.out.print(" = " + result);
-        //}
+        }
     }
 }
 

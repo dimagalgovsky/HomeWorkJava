@@ -4,15 +4,18 @@ import java.util.Scanner;
 
 public class Zadanie2_1_3 {
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Введите количество элементов массива: ");
+        int n = input.nextInt();
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Введите числа");
-        int dlina = 5;
-        int[] arr = new int[dlina];
+        int[] arr = new int[n];
 
-        for (int i = 0; i < dlina; i++) {
-           arr[i] = in.nextInt();
+        System.out.println("Введите " + n + " чисел");
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = input.nextInt();
         }
+
         for (int j = 0; j < arr.length; j++) {
             System.out.print(arr[j]+" ");
         }

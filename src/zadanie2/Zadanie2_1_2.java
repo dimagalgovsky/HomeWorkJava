@@ -5,13 +5,16 @@ import java.util.Scanner;
 public class Zadanie2_1_2 {
     public static void main(String[] args) {
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Введите числа");
-        int dlina = 5;
-        int[] arr = new int[dlina];
+        Scanner input = new Scanner(System.in);
+        System.out.println("Введите количество элементов массива: ");
+        int n = input.nextInt();
 
-        for (int i = 0; i < dlina; i++) {
-           arr[i] = in.nextInt();
+        int[] arr = new int[n];
+
+        System.out.println("Введите " + n + " чисел");
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = input.nextInt();
         }
 
         int j = 0;

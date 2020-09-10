@@ -5,18 +5,21 @@ import java.util.Scanner;
 public class Zadanie2_3_4 {
     public static void main(String[] args) {
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Введите числа");
-        int dlina = 6;
-        int[] arr = new int[dlina];
 
-        for (int i = 0; i < dlina; i++) {
-           arr[i] = in.nextInt();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Введите количество элементов массива: ");
+        int n = input.nextInt();
+        int[] arr = new int[n];
+
+        System.out.println("Введите " + n + " чисел");
+        for (int i = 0; i < n; i++) {
+            arr[i] = input.nextInt();
         }
-        for (int j = 0; j < dlina / 2; j++) {
+
+        for (int j = 0; j < arr.length / 2; j++) {
             int temp = arr[j];
-            arr[j] = arr[dlina - 1 - j];
-            arr[dlina - 1 - j] = temp;
+            arr[j] = arr[arr.length - 1 - j];
+            arr[arr.length - 1 - j] = temp;
         }
             for (int a: arr) {
             System.out.print(a+" ");
