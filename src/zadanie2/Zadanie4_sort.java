@@ -6,49 +6,40 @@ public class Zadanie4_sort {
     public static void bubl(int array[]) {
 
         for (int i = 0; i < array.length - 1; i++) {
-            for (int j =array.length-1; j > i; j--) {
-                if (array[j-1] > array[j]) {
-                    int tmp = array[j-1];
-                    array[j-1] = array[j];
+            for (int j = array.length - 1; j > i; j--) {
+                if (array[j - 1] > array[j]) {
+                    int tmp = array[j - 1];
+                    array[j - 1] = array[j];
                     array[j] = tmp;
                 }
             }
         }
     }
 
-  //  public static void sheik(String[] args)
-  //  {
-  //      int[] array = {3, 1, 5, 8, 1, 0, 6, 4, 6, 7};
-  //      int left = 0; // левая граница
-  //      int right = array.length - 1; // правая граница
-//
-  //      do
-  //      {
-  //          //Сдвигаем к концу массива "тяжелые элементы"
-  //          for (int i = left; i < right; i++)
-  //          {
-  //              if(array[i] > array[i+1])
-  //              {
-  //                  array[i] ^= array[i+1];
-  //                  array[i+1] ^= array[i];
-  //                  array[i] ^= array[i+1];
-  //              }
-  //          }
-  //          right--; // уменьшаем правую границу
-  //          //Сдвигаем к началу массива "легкие элементы"
-  //          for (int i = right; i > left ; i--)
-  //          {
-  //              if(array[i] < array[i-1])
-  //              {
-  //                  array[i] ^= array[i-1];
-  //                  array[i-1] ^= array[i];
-  //                  array[i] ^= array[i-1];
-  //              }
-  //          }
-  //          left++; // увеличиваем левую границу
-  //      } while (left <= right);
-    }
+    public static void sheik(int array[]) {
+        int left = 0;
+        int right = array.length - 1;
 
+        do {
+            for (int i = left; i < right; i++) {
+                if (array[i] > array[i + 1]) {
+                    array[i] ^= array[i + 1];
+                    array[i + 1] ^= array[i];
+                    array[i] ^= array[i + 1];
+                }
+            }
+            right--;
+            for (int i = right; i > left; i--) {
+                if (array[i] < array[i - 1]) {
+                    array[i] ^= array[i - 1];
+                    array[i - 1] ^= array[i];
+                    array[i] ^= array[i - 1];
+                }
+            }
+            left++;
+        } while (left <= right);
+    }
+}
     /*
     Выполнить сортировку массива с числами:
 	4.0. !!!!ВНИМАНИЕ!!!! код сортировок в данном ДЗ не должен дублироваться. Дублирование кода сортировок приведёт к провалу выполнения данного задания.
@@ -65,16 +56,4 @@ public class Zadanie4_sort {
 		4.3.4. {}
 	4.4. После тестов написать код который будет создавать массив рандомной длинны, заполнять массив рандомными числами
 	4.5. После рандома написать код который будет создавать массив руками через консоль
-
-
-     int[] arr=[]
-     sort
-     sout
-
-     1 класс-запус работы 43 44 45
-     2 класс 42
-
-     1 класс сортировки
-     1 класс все остальное
-
      */
