@@ -3,98 +3,102 @@ package zadanie5;
 public class Zadacha5 {
     public static void main(String[] args) {
 
-        int number = 371_011_098;
-        double number1 = 71_011_098.499;
+        int number = 12_098;
+        double number1 = 1233323.499;
         int day = 1674;
 
-        toString(number);
-        System.out.println();
-        toString(number1);
-        System.out.println();
-        toWeek(day);
+        System.out.println(toString(number));
+        System.out.println(toString(number1));
+        System.out.println(toWeek(day));
     }
 
-     public static void toString(int number) {       //Должен быть String
+     public static String toString(int number) {
+         String result = "";
 
-         int million = number / 1_000_000;           //миллионы
-         pechatSto(million);
-         pechatDes(million);
-         pechatEd(million);
-         pechad12(million);
-         printMillion(million);
-         number = number - million * 1_000_000;
+         int million = number / 1_000_000;
+         if (million > 0) {
+             result += pechatSto(million);
+             result += pechatDes(million);
+             result += pechatEd(million);
+             result += pechad12(million);
+             result += printMillion(million);
+             number = number - million * 1_000_000;
+         }
 
-         int thousand = number / 1_000;              //тысячи
-         pechatSto(thousand);
-         pechatDes(thousand);
-         pechatEd(thousand);
-         pechad12Thous(thousand);
-         printThousand(thousand);
+         int thousand = number / 1_000;
+         if (thousand > 0) {
+             result += pechatSto(thousand);
+             result += pechatDes(thousand);
+             result += pechatEd(thousand);
+             result += pechad12Thous(thousand);
+             result += printThousand(thousand);
+             number = number - thousand * 1_000;
+         }
 
-         number = number - thousand * 1_000;         //единицы
-         pechatSto(number);
-         pechatDes(number);
-         pechatEd(number);
-         pechad12(number);
-     }
+         if (number > 0) {
+             result += pechatSto(number);
+             result += pechatDes(number);
+             result += pechatEd(number);
+             result += pechad12(number);
+         }
+         return result.substring(0, 1).toUpperCase() + result.substring(1);
+    }
 
-    public static void toString(double number1){    //Должен быть String
+    public static String toString(double number1){
+        String result = "";
 
         double drob = number1 % 1;
         double drob1 = drob * 100;
         int drob2 = (int) drob1;
         int number = (int) number1;
-        toString(number);
-        System.out.print("целых ");
-        pechatDes(drob2);
-        pechatEd(drob2);
-        pechad12Thous(drob2);
-        prindDouble(drob,drob2);
+
+        result += toString(number);
+        result += "целых ";
+        result += pechatDes(drob2);
+        result += pechatEd(drob2);
+        result += pechad12Thous(drob2);
+        result += prindDouble(drob,drob2);
+        return result.substring(0, 1).toUpperCase() + result.substring(1);
     }
 
-    public static void toWeek(int day){             //Должен быть String
+    public static String toWeek(int day){
+        String result = "";
+
         day = day / 7;
-        System.out.print(day+" ");
-        printWeek(day);
-    }
+        result += day+" ";
+        result += printWeek(day);
+        return result.substring(0, 1).toUpperCase() + result.substring(1);
+        }
 
-    public static void pechatSto (int chislo) {     //печатает сотни
+    public static String pechatSto (int chislo) {     //печатает сотни
+        String result = "";
         int sto = chislo / 100;
         switch (sto) {
             case 1:
-                System.out.print("сто ");
-                break;
+                return result = "сто ";
             case 2:
-                System.out.print("двести ");
-                break;
+                return "двести ";
             case 3:
-                System.out.print("триста ");
-                break;
+                return "триста ";
             case 4:
-                System.out.print("четыреста ");
-                break;
+                return "четыреста ";
             case 5:
-                System.out.print("пятьсот ");
-                break;
+                return "пятьсот ";
             case 6:
-                System.out.print("шестьсот ");
-                break;
+                return "шестьсот ";
             case 7:
-                System.out.print("семьсот ");
-                break;
+                return "семьсот ";
             case 8:
-                System.out.print("восемьсот ");
-                break;
+                return "восемьсот ";
             case 9:
-                System.out.print("девятьсот ");
-                break;
-            case 0:
-                break;
+                return "девятьсот ";
             }
+            return result;
     }
 
-    public static void pechatDes (int chislo) {     //печатает десятки
+    public static String pechatDes (int chislo) {     //печатает десятки
 
+        String result = "";
         int sto = chislo / 100;
         chislo = chislo - sto * 100;
         int des = chislo / 10;
@@ -104,219 +108,177 @@ public class Zadacha5 {
             case 1:
                 switch (chislo) {
                     case 1:
-                        System.out.print("одиннадцать ");
-                        return;
+                        return "одиннадцать ";
                     case 2:
-                        System.out.print("двенадцать ");
-                        return;
+                        return "двенадцать ";
                     case 3:
-                        System.out.print("тринадцать ");
-                        return;
+                        return "тринадцать ";
                     case 4:
-                        System.out.print("четырнадцать ");
-                        return;
+                        return "четырнадцать ";
                     case 5:
-                        System.out.print("пятнадцать ");
-                        return;
+                        return "пятнадцать ";
                     case 6:
-                        System.out.print("шестнадцать ");
-                        return;
+                        return "шестнадцать ";
                     case 7:
-                        System.out.print("семнадцать ");
-                        return;
+                        return "семнадцать ";
                     case 8:
-                        System.out.print("восемнадцать ");
-                        return;
+                        return "восемнадцать ";
                     case 9:
-                        System.out.print("девятнадцать ");
-                        return;
+                        return "девятнадцать ";
                     case 0:
-                        System.out.print("десять ");
-                        return;
+                        return "десять ";
                 }
-                break;
             case 2:
-                System.out.print("двадцать ");
-                break;
+                return "двадцать ";
             case 3:
-                System.out.print("тридцать ");
-                break;
+                return "тридцать ";
             case 4:
-                System.out.print("сорок ");
-                break;
+                return "сорок ";
             case 5:
-                System.out.print("пятьдесят ");
-                break;
+                return "пятьдесят ";
             case 6:
-                System.out.print("шестьдесят ");
-                break;
+                return "шестьдесят ";
             case 7:
-                System.out.print("семьдесят ");
-                break;
+                return "семьдесят ";
             case 8:
-                System.out.print("восемьдесят ");
-                break;
+                return "восемьдесят ";
             case 9:
-                System.out.print("девяноста ");
-                break;
-            case 0:
-                break;
+                return "девяноста ";
         }
+        return result;
     }
 
-    public static void pechatEd (int chislo) {          //печать единицы
+    public static String pechatEd (int chislo) {          //печать единицы
+        String result = "";
         if (10>(chislo % 100) || (chislo % 100)>19) {
             chislo = chislo % 10;
             switch (chislo) {
                 case 3:
-                    System.out.print("три ");
-                    break;
+                    return "три ";
                 case 4:
-                    System.out.print("четыре ");
-                    break;
+                    return "четыре ";
                 case 5:
-                    System.out.print("пять ");
-                    break;
+                    return "пять ";
                 case 6:
-                    System.out.print("шесть ");
-                    break;
+                    return "шесть ";
                 case 7:
-                    System.out.print("семь ");
-                    break;
+                    return "семь ";
                 case 8:
-                    System.out.print("восемь ");
-                    break;
+                    return "восемь ";
                 case 9:
-                    System.out.print("девять ");
-                    break;
-                case 0:
-                    break;
+                    return "девять ";
             }
         }
+        return result;
     }
 
-    public static void pechad12(int chislo) {
+    public static String pechad12(int chislo) {
+        String result = "";
         if (10>(chislo % 100) || (chislo % 100)>19) {
             chislo = chislo % 10;
             switch (chislo) {
                 case 1:
-                    System.out.print("один ");
-                    break;
+                    return "один ";
                 case 2:
-                    System.out.print("два ");
-                    break;
+                    return "два ";
             }
         }
+        return result;
     }
 
-    public static void pechad12Thous(int chislo) {
+    public static String pechad12Thous(int chislo) {
+        String result = "";
         if (10 > (chislo % 100) || (chislo % 100) > 19) {
             chislo = chislo % 10;
             switch (chislo) {
                 case 1:
-                    System.out.print("одна ");
-                    break;
+                    return "одна ";
                 case 2:
-                    System.out.print("две ");
-                    break;
+                    return "две ";
             }
         }
+        return result;
     }
 
-    public static void printMillion(int chislo) {
+    public static String printMillion(int chislo) {
+        String result = "";
         if (chislo > 0) {
             if (chislo % 10 == 1 && chislo % 100 != 11) {
-                System.out.print("миллион ");
-                return;
+                return "миллион ";
             }
             if (chislo % 10 == 2 && chislo % 100 != 12) {
-                System.out.print("миллиона ");
-                return;
+                return "миллиона ";
             }
             if (chislo % 10 == 3 && chislo % 100 != 13) {
-                System.out.print("миллиона ");
-                return;
+                return "миллиона ";
             }
             if (chislo % 10 == 4 && chislo % 100 != 14) {
-                System.out.print("миллиона ");
-                return;
+                return "миллиона ";
             }
             else {
-                System.out.print("миллионов ");
+                return "миллионов ";
             }
         }
+        return result;
     }
 
-    public static void printThousand(int chislo) {
+    public static String printThousand(int chislo) {
             if (chislo % 10 == 1 && chislo % 100 != 11) {
-                System.out.print("тысяча ");
-                return;
+                return "тысяча ";
             }
             if (chislo % 10 == 2 && chislo % 100 != 12) {
-                System.out.print("тысячи ");
-                return;
+                return "тысячи ";
             }
             if (chislo % 10 == 3 && chislo % 100 != 13) {
-                System.out.print("тысячи ");
-                return;
+                return "тысячи ";
             }
             if (chislo % 10 == 4 && chislo % 100 != 14) {
-                System.out.print("тысячи ");
-                return;
+                return "тысячи ";
             } else {
-                System.out.print("тысяч ");
+                return "тысяч ";
             }
-
     }
 
-    public static void prindDouble(double drob, int chislo){
+    public static String prindDouble(double drob, int chislo){
         if (drob<0.1) {
             if (drob < 0.02) {
-                System.out.print("сотая");
-                return;
+                return "сотая ";
             } else {
-                System.out.print("сотых");
-                return;
+                return "сотых ";
             }
         }
         if (chislo>10){
             if (chislo%10 == 1){
-                System.out.print("сотая");
+                return "сотая ";
             }
             else {
-                System.out.print("сотых");
+                return "сотых ";
             }
         }
         else {
             if (chislo == 1){
-                System.out.print("десятая ");
+                return "десятая ";
             }
             else {
-                System.out.println("десятых");
+                return "десятых ";
             }
         }
     }
 
-    public static void printWeek(int chislo){
+    public static String printWeek(int chislo){
             if (chislo % 10 == 1 && chislo % 100 != 11) {
-                System.out.print("неделя ");
-                return;
+                return "неделя ";
             }
             if (chislo % 10 == 2 && chislo % 100 != 12) {
-                System.out.print("недели ");
-                return;
+                return "недели ";
             }
             if (chislo % 10 == 3 && chislo % 100 != 13) {
-                System.out.print("недели ");
-                return;
+                return "недели ";
             }
             if (chislo % 10 == 4 && chislo % 100 != 14) {
-                System.out.print("недели ");
-                return;
+                return "недели ";
             } else {
-                System.out.print("недель ");
+                return "недель ";
             }
     }
 }
-
-
