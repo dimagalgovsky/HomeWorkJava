@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class ReadFile {
 
-    static String readAllBytesJava7(String filePath) {
+   public static String readAllBytesJava7(String filePath) {
         String content = "";
         try {
             content = new String ( Files.readAllBytes( Paths.get(filePath) ) );
