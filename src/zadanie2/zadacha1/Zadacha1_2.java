@@ -2,6 +2,7 @@ package zadanie2.zadacha1;
 
 public class Zadacha1_2 {
     public static void main(String[] args) {
+
         for (String arg : args) {
 
             int dlina = arg.length();

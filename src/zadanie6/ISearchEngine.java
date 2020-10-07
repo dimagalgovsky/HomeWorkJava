@@ -5,10 +5,11 @@ import java.util.Map;
 import java.util.Set;
 
 public interface ISearchEngine {
-    long search(String text, String word);
-    Set word(String fileArray[]);
-    Map countWord(String fileArray[]);
+
+    Set wordSet(String fileArray[]);
+    Map countWordMap(String fileArray[]);
     List sortMap(String fileArray[]);
     List top10(String fileArray[]);
-
+    long search(String text, String word);
+    long wordIndexOf(String data, String word);
 }

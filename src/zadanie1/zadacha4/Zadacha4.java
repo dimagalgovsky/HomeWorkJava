@@ -1,15 +1,15 @@
 package zadanie1.zadacha4;
 
 public class Zadacha4 {
-    /*
-    Создать СТАТИЧЕСКИЙ метод sleepIn рядом с методом main. (Взято с https://codingbat.com/prob/p187868).
-	4.1 Данный метод будет принимает два параметра
-	4.2 Будет отвечать на вопрос спать ли дальше (возвращать true либо false).
-	4.3 Первый параметр boolean weekday обозначает рабочий день
-	4.4 Второй параметр boolean vacation обозначает отпуск.
-	4.5 Если у нас отпуск или не рабочий день то мы можем спать дальше
-	4.6 На основании ответа от метода sleepIn вывести сообщение можем спать дальше или пора идти на работу
+    public static boolean sleepIn(boolean weekday, boolean vacation){
 
-	ВНИМАНИЕ! В примерах if и else if для сравнения имён использовать код вида Objects.equals("Имя1", "Имя2").
-     */
+        if (!weekday || vacation){
+            System.out.println("можем спать дальше");
+            return true;
+        }
+        else {
+            System.out.println("пора идти на работу");
+            return false;
+        }
+    }
 }
