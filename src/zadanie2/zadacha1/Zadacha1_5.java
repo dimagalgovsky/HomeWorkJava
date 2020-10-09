@@ -18,7 +18,7 @@ public class Zadacha1_5 {
                 }
 
             }
-        }
+    }
 }
 
 

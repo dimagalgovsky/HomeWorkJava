@@ -12,11 +12,11 @@ public class BubbleSorter {
                     int tmp = array[j-1];
                     array[j-1] = array[j];
                     array[j] = tmp;
-                    }
                 }
             }
         }
     }
+}
 
 //Нарисовать блок схему алгоритма работы пузырьковой сортировки.
 //draw io

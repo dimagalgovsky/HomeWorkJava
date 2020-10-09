@@ -40,6 +40,7 @@ public class Zadanie4_sort {
         } while (left <= right);
     }
 }
+
     /*
     Выполнить сортировку массива с числами:
 	4.0. !!!!ВНИМАНИЕ!!!! код сортировок в данном ДЗ не должен дублироваться. Дублирование кода сортировок приведёт к провалу выполнения данного задания.
@@ -57,3 +58,37 @@ public class Zadanie4_sort {
 	4.4. После тестов написать код который будет создавать массив рандомной длинны, заполнять массив рандомными числами
 	4.5. После рандома написать код который будет создавать массив руками через консоль
      */
+
+
+/*
+/Вадима
+static int[] shakerSort(int[] inputArray) {
+        int temp = 0;
+        int leftBorder = 0;
+        int rightBorder = inputArray.length - 1;
+        boolean isSorted = false;
+
+        while(!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < rightBorder; i++) {
+                if (inputArray[i] > inputArray[i + 1]) {
+                    temp = inputArray[i];
+                    inputArray[i] = inputArray[i + 1];
+                    inputArray[i + 1] = temp;
+                    isSorted = false;
+                }
+            }
+            rightBorder--;
+            for (int i = rightBorder; i > leftBorder; i--) {
+                if (inputArray[i] < inputArray[i + 1]) {
+                    temp = inputArray[i];
+                    inputArray[i] = inputArray[i - 1];
+                    inputArray[i - 1] = temp;
+                    isSorted = false;
+                }
+            }
+            leftBorder++;
+        }
+        return inputArray;
+    }
+ */

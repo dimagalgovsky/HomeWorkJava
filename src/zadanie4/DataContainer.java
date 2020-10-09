@@ -16,8 +16,18 @@ public class DataContainer<T> {
 
     public int add(T item) {
         if (this.data[data.length - 1] != null) {
-            this.data = Arrays.copyOf(data, data.length + 1);
+            boolean result = true;
+            for (int i = 0; i < this.data.length; i++) {
+                if (this.data[i] == null) {
+                    result = false;
+                    break;
+                }
+            }
+            if (result) {
+                this.data = Arrays.copyOf(data, data.length + 1);
+            }
         }
+
         for (int i = 0; i < this.data.length; i++) {
             if (this.data[i] == null) {
                 this.data[i] = item;
@@ -53,19 +63,27 @@ public class DataContainer<T> {
     }
 
     public boolean deleteItem(T item) {
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] == item) {
-                for (int j = i; j < data.length - 1; j++) {
-                    data[j] = data[j + 1];
-                }
-                this.data = Arrays.copyOf(this.data, data.length - 1);
-                return true;
+
+        int index = getIndex(item);
+        if (index < 0) {
+            return false;
+        }
+        delete(index);
+        return true;
+    }
+
+    public int getIndex(T item){
+
+        for (int i = 0; i < data.length-1; i++) {
+            if (data[i]==item){
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     public void sort(Comparator<T> comparator) {
+
         T tmp;
         for (int i = 0; i < this.data.length - 1; i++) {
             for (int j = 0; j < this.data.length - 1; j++) {
@@ -84,7 +102,6 @@ public class DataContainer<T> {
     }
 }
 
-  // public void sort(Comparator<.......> comparator)
 
 
 

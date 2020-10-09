@@ -4,7 +4,7 @@ public class Zadacha5 {
     public static void main(String[] args) {
 
         int number = 12_098;
-        double number1 = 1233323.499;
+        double number1 = 1233323.4;
         int day = 1674;
 
         System.out.println(toString(number));

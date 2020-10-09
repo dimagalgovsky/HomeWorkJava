@@ -22,7 +22,13 @@ public class Zadacha1_3 {
             System.out.println("Степерь дробная");
             System.exit(0);
         }
-        System.out.println(Math.pow(chislo, step));
+
+        double result = 1;
+        for (int i = 1; i <= step; i++) {
+            result *= chislo;
+        }
+
+        System.out.println(result);
     }
 }
 

@@ -1,42 +1,48 @@
 package zadanie3.newVariant;
 
-public class CalcWithMemory {
-    double memory = 0;
+public class CalcWithMemory implements ICalculator{
 
-    public double memoryCalc(){
-        return memory;
+    double memory = 0;
+    double result = 0;
+    private ICalculator calcMemory;
+
+    public CalcWithMemory(ICalculator calc) {
+        this.calcMemory = calc;
+    }
+
+    public double writeMemory(){
+        return this.memory=this.result;
+    }
+
+    public double getResult() {
+        return this.result;
+    }
+
+    public double readMemory(){
+        double valueMemory = this.memory;
+        this.memory = 0d;
+        return valueMemory;
     }
 
     public double division (double a, double b){
-        return memory=a/b;
+        return this.result=calcMemory.division(a,b);
     }
     public double increase (double a, double b){
-        return memory=a*b;
+        return this.result=calcMemory.increase(a,b);
     }
     public double sum (double a, double b){
-        return memory=a+b;
+        return this.result=calcMemory.sum(a,b);
     }
     public double subtract (double a, double b){
-        return memory=a-b;
+        return this.result=calcMemory.subtract(a,b);
     }
     public double power (double a, int b){
-        double result = 1;
-        for (int i = 1; i <= b; i++) {
-            result *= a;
-        }
-        return memory=result;
+        return this.result=calcMemory.power(a,b);
     }
     public double module(double a){
-        if (a < 0){
-            a += 2*a;
-        }
-        return memory=a;
+        return this.result=calcMemory.module(a);
     }
     public double sqrt(double a) {
-        double result = 0;
-        while (result * result - a <= 0.01){
-            result+=0.01;
-        }
-        return memory=result;
+        return this.result=calcMemory.sqrt(a);
     }
 }
