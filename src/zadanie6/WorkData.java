@@ -2,27 +2,9 @@ package zadanie6;
 
 import java.util.*;
 
-public class WorkData {
-    public static long search(String text, String word){
+public class WorkData implements ISearchEngine{
 
-        long count = 0;
-
-        text = text.replaceAll("[,.-?!-_)(]", "");
-        String[] fileArray = text.split("\\s+");
-
-        Map<String, Integer> map = new HashMap<>(countWordMap(fileArray)); ;
-
-        for(Map.Entry<String, Integer> entry: map.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            if (word.hashCode() == key.hashCode()) {
-                count = value;
-            }
-        }
-        return count;
-    }
-
-    public static Set wordSet(String fileArray[]) {            //set с уникальными словами
+    public static Set wordSet(String[] fileArray) {            //set с уникальными словами
 
         Set<String> set = new HashSet<String>();
         for (int i = 0; i < fileArray.length; i++) {
@@ -33,17 +15,19 @@ public class WorkData {
         return set;
     }
 
-    public static Map countWordMap(String fileArray[]) {       //map с частатой встречания
+    public static Map countWordMap(String[] fileArray) {       //map с частатой встречания
 
-        Set<String> top10 = new HashSet<>(Arrays.asList(fileArray));
+        Set<String> setNew = new HashSet<>(Arrays.asList(fileArray));
         Map<String, Integer> map = new HashMap<>();
-        for (String key : top10) {
+        long count1=0;
+        for (String key : setNew) {
             map.put(key, Collections.frequency(Arrays.asList(fileArray), key));
+
         }
-        return map;
+                return map;
     }
 
-    public static List sortMap(String fileArray[]){         //сортировка map по значению
+    public static List sortMap(String[] fileArray){         //сортировка map по значению
 
         List list = new ArrayList(countWordMap(fileArray).entrySet());
         Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
@@ -55,7 +39,7 @@ public class WorkData {
         return list;
     }
 
-    public static List top10(String fileArray[]) {          //топ10 повторяющихся слов
+    public static List top10(String[] fileArray) {          //топ10 повторяющихся слов
 
         List list = new ArrayList(sortMap(fileArray));
         List list1 = new ArrayList();
@@ -64,5 +48,32 @@ public class WorkData {
             list1.add(list.get(j));
         }
         return list1;
+    }
+
+    @Override
+    public long search(String text, String word) {
+
+        long count1 = 0;
+
+        text = text.replaceAll("[,.-?!-_)(]", "");
+        String[] fileArray = text.split("\\s+");
+
+        Map<String, Integer> map = new HashMap<>(countWordMap(fileArray));
+
+        for(Map.Entry<String, Integer> entry: map.entrySet()) {
+
+            String keyWord = entry.getKey();
+            Integer valueNum = entry.getValue();
+
+            if (keyWord.equalsIgnoreCase(word)) {
+                count1+=valueNum;
+            }
+        }
+        return count1;
+    }
+
+    @Override
+    public long find1(String data, String word) {
+        return 0;
     }
 }
