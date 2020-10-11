@@ -6,14 +6,13 @@ import static zadanie6.ReadFile.readAllBytesJava7;
 
 public class SortMain {
 
-    private static final  Random rand = new Random();
-    long timeStart = System.currentTimeMillis();
+        private static final Random rand = new Random();
+        long timeStart = System.currentTimeMillis();
+        public static int sizeMassive = 1_000;
+        public static void main(String[] args) {
 
-    public static void main(String[] args) {
 
-
-
-        ComporatorSizeAge comporatorSizeAge = new ComporatorSizeAge();
+        ComporatorSizeAgeNick comporatorSizeAgeNick = new ComporatorSizeAgeNick();
 
 //файл для рандома с именами
 
@@ -25,12 +24,15 @@ public class SortMain {
 //заполнение LinkedList
 
         long listLinTime = System.currentTimeMillis();
-        LinkedList<Animal> listLin = new LinkedList<Animal>();
-        for (int i = 0; i < 1_000_000; i++) {
-            String name = fileArray[rand.nextInt(fileArray.length)];
-            int x = rand.nextInt(100) + 1;
-            listLin.add(new Animal(x,name));
-        }
+
+
+                LinkedList<Animal> listLin = new LinkedList<Animal>();
+                for (int i = 0; i < sizeMassive; i++) {
+                    String name = fileArray[rand.nextInt(fileArray.length)];
+                    int x = rand.nextInt(100) + 1;
+                    listLin.add(new Animal(x, name));
+                }
+
 
         listLinTime = System.currentTimeMillis()-listLinTime;
         System.out.println("Добавление по 1_000_000 объектов");
@@ -49,7 +51,7 @@ public class SortMain {
 //сортировка LinkedList
 
         long listLinTimeSort = System.currentTimeMillis();
-        listLin.sort(comporatorSizeAge);
+        listLin.sort(comporatorSizeAgeNick);
         listLinTimeSort = System.currentTimeMillis()-listLinTimeSort;
         System.out.println("Длительность операции сортировки коллекции LinkedList:" + listLinTimeSort);
 
@@ -68,7 +70,7 @@ public class SortMain {
 
         long listArrTime = System.currentTimeMillis();
         ArrayList<Animal> listArr = new ArrayList<Animal>();
-        for (int i = 0; i < 1_000_000; i++) {
+        for (int i = 0; i < sizeMassive; i++) {
             String name = fileArray[rand.nextInt(fileArray.length)];
             int x = rand.nextInt(100) + 1;
             listArr.add(new Animal(x,name));
@@ -79,7 +81,7 @@ public class SortMain {
 //сортировка ArrayList
 
         long listArrTimeSort = System.currentTimeMillis();
-        listArr.sort(comporatorSizeAge);
+        listArr.sort(comporatorSizeAgeNick);
         listArrTimeSort = System.currentTimeMillis()-listArrTimeSort;
         System.out.println("Длительность операции сортировки коллекции ArrayList:" + listArrTimeSort);
 
@@ -87,7 +89,7 @@ public class SortMain {
 
         long setHashTime = System.currentTimeMillis();
         HashSet<Animal> setHash = new HashSet<Animal>();
-        for (int i = 0; i < 1_000_000; i++) {
+        for (int i = 0; i < sizeMassive; i++) {
             String name = fileArray[rand.nextInt(fileArray.length)];
             int x = rand.nextInt(100) + 1;
             setHash.add(new Animal(x,name));
@@ -99,15 +101,15 @@ public class SortMain {
 
         long setHashTimeSort = System.currentTimeMillis();
         List<Animal> list = new ArrayList<>(setHash);
-        list.sort(comporatorSizeAge);
+        list.sort(comporatorSizeAgeNick);
         setHashTimeSort = System.currentTimeMillis()-setHashTimeSort;
         System.out.println("Длительность операции сортировки коллекции HashSet:" + setHashTimeSort);
 
 //заполнение TreeSet
 
         long setTreeTime = System.currentTimeMillis();
-        TreeSet<Animal> setTree = new TreeSet<Animal>(comporatorSizeAge);
-        for (int i = 0; i < 1_000_000; i++) {
+        TreeSet<Animal> setTree = new TreeSet<Animal>(comporatorSizeAgeNick);
+        for (int i = 0; i < sizeMassive; i++) {
             String name = fileArray[rand.nextInt(fileArray.length)];
             int x = rand.nextInt(100) + 1;
             setTree.add(new Animal(x,name));
@@ -119,7 +121,7 @@ public class SortMain {
 
         long setTreeTimeSort = System.currentTimeMillis();
         List<Animal> list1 = new ArrayList<>(setTree);
-        list1.sort(comporatorSizeAge);
+        list1.sort(comporatorSizeAgeNick);
         setTreeTimeSort = System.currentTimeMillis()-setTreeTimeSort;
         System.out.println("Длительность операции сортировки коллекции TreeSet:" + setTreeTimeSort);
     }

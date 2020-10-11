@@ -4,6 +4,11 @@ public class Person {
     private String name;
     private String password; //5-10 sim
 
+    public Person(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }
@@ -17,11 +22,6 @@ public class Person {
     }
 
     public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Person(String name, String password) {
-        this.name = name;
         this.password = password;
     }
 

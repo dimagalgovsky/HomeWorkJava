@@ -5,6 +5,11 @@ public class Animal {
     private int age;
     private String nick;
 
+    public Animal(int age, String nick) {
+        this.age = age;
+        this.nick = nick;
+    }
+
     public int getAge() {
         return age;
     }
@@ -18,11 +23,6 @@ public class Animal {
     }
 
     public void setNick(String nick) {
-        this.nick = nick;
-    }
-
-    public Animal(int age, String nick) {
-        this.age = age;
         this.nick = nick;
     }
 
