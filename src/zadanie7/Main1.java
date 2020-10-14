@@ -1,7 +1,5 @@
 package zadanie7;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.*;
 
 import static zadanie6.ReadFile.readAllBytesJava7;
@@ -11,11 +9,11 @@ import static zadanie7.RandomPassword.nextString;
 public class Main1{
 
     private static final Random rand = new Random();
-    public static final int sizeMassive = 1_00000;
+    public static final int sizeMassive = 1_00;
     public static final int maxSizeAge = 100;
     public static final int maxSizePassword = 10;
 
-    public static final String personWay = "C:\\Users\\Dmitriy\\IdeaProjects\\MyHomeWork\\src\\zadanie7\\names.txt";
+    public static final String personWay = "C:\\Users\\Dmitriy\\IdeaProjects\\MyHomeWork\\src\\zadanie7\\names.txt";        //изменить адреса
     public static final String animalWay = "C:\\Users\\Dmitriy\\IdeaProjects\\MyHomeWork\\src\\zadanie7\\pet_niks.txt";
 
     public static ComporatorSizeAge comporatorSizeAge = new ComporatorSizeAge();
@@ -42,7 +40,6 @@ public class Main1{
         }
         return linkListAnimal;
     }
-
 
 //заполнение LinkedList Person
     public static LinkedList<Person> linkListPerson (String[] fileArray, int sizeMassive, int maxSizePassword) {
@@ -116,7 +113,7 @@ public class Main1{
         return treeSetAnimal;
     }
 
-//заполнение TreeSet Animal
+//заполнение TreeSet Person
     public static TreeSet<Person> treeSetPerson (String[] fileArray, int sizeMassive, int maxSizePassword) {
 
         TreeSet<Person> treeSetPerson = new TreeSet<Person>(comporatorSizePasswordNick);
@@ -128,419 +125,209 @@ public class Main1{
         return treeSetPerson;
     }
 
-//сортировка коллекций
-    public static void sortCollect(){
-
-        linkListAnimal(randNick(animalWay),sizeMassive,maxSizeAge).sort(comporatorSizeAgeNick);
-        arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge).sort(comporatorSizeAgeNick);
-        List<Animal> listA = new ArrayList<>(arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        listA.sort(comporatorSizeAgeNick);
-        //treeSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge);    //уже отсортирован
-
-        linkListPerson(randNick(personWay),sizeMassive,maxSizePassword).sort(comporatorSizePasswordNick);
-        arrayListPerson(randNick(personWay),sizeMassive,maxSizePassword).sort(comporatorSizePasswordNick);
-        List<Person> listP = new ArrayList<>(hashSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        listP.sort(comporatorSizePasswordNick);
-        //treeSetPerson(randNick(personWay),sizeMassive,maxSizePassword); //уже отсортирован
-    }
-
 //вывод в консоль времени заполнения
     public static void timeWorkAdd() {
 
-//расчет времени выполнения заполнения Animal
-        long[] addListAnimal = new long[4];
+        long[] arr1 = new long[4];
+        long[] arr2 = new long[4];
 
         long setTreeTime = System.currentTimeMillis();
         linkListAnimal(randNick(animalWay),sizeMassive,maxSizeAge);
-        addListAnimal[0] = (System.currentTimeMillis()-setTreeTime);
+        arr1[0] = (System.currentTimeMillis()-setTreeTime);
 
         setTreeTime = System.currentTimeMillis();
         arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge);
-        addListAnimal[1] = (System.currentTimeMillis()-setTreeTime);
+        arr1[1] = (System.currentTimeMillis()-setTreeTime);
 
         setTreeTime = System.currentTimeMillis();
         hashSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge);
-        addListAnimal[2] = (System.currentTimeMillis()-setTreeTime);
+        arr1[2] = (System.currentTimeMillis()-setTreeTime);
 
         setTreeTime = System.currentTimeMillis();
         treeSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge);
-        addListAnimal[3] = (System.currentTimeMillis()-setTreeTime);
-
-//расчет времени выполнения заполнения Animal
-        long[] addListPerson = new long[4];
+        arr1[3] = (System.currentTimeMillis()-setTreeTime);
 
         setTreeTime = System.currentTimeMillis();
         linkListPerson(randNick(personWay),sizeMassive,maxSizePassword);
-        addListPerson[0] = (System.currentTimeMillis()-setTreeTime);
+        arr2[0] = (System.currentTimeMillis()-setTreeTime);
 
         setTreeTime = System.currentTimeMillis();
         arrayListPerson(randNick(personWay),sizeMassive,maxSizePassword);
-        addListPerson[1] = (System.currentTimeMillis()-setTreeTime);
+        arr2[1] = (System.currentTimeMillis()-setTreeTime);
 
         setTreeTime = System.currentTimeMillis();
         hashSetPerson(randNick(personWay),sizeMassive,maxSizePassword);
-        addListPerson[2] = (System.currentTimeMillis()-setTreeTime);
+        arr2[2] = (System.currentTimeMillis()-setTreeTime);
 
         setTreeTime = System.currentTimeMillis();
         treeSetPerson(randNick(personWay),sizeMassive,maxSizePassword);
-        addListPerson[3] = (System.currentTimeMillis()-setTreeTime);
+        arr2[3] = (System.currentTimeMillis()-setTreeTime);
 
-        System.out.println("Время на заполнение коллекций:");
+        String name = "Время заполнение коллекций классов Animal и Person";
+        printResult(arr1,arr2,name);
+
+    }
+
+//выводит результаты в консоль
+    public static void printResult(long[] arr1,long[] arr2, String name){
+        System.out.println(name);
         System.out.println("Класс"+"\t"+"LinkedList"+"\t"+"ArrayList"+"\t"+"HashSet"+"\t\t"+"TreeSet ");
         System.out.print("Animal"+"\t");
-        for (long i : addListAnimal) {
+        for (long i : arr1) {
             System.out.print(i+"\t\t\t");
         }
         System.out.println();
         System.out.print("Person"+"\t");
-        for (long i : addListPerson) {
+        for (long i : arr2) {
             System.out.print(i+"\t\t\t");
         }
         System.out.println();
     }
 
+//создание коллекций, для дальнейших работ с ними
+    public static LinkedList linkA = new LinkedList(linkListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
+    public static ArrayList arrA = new ArrayList(arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
+    public static HashSet hSetA = new HashSet(hashSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
+    public static TreeSet tSetA = new TreeSet(treeSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
+    public static LinkedList linkP = new LinkedList(linkListPerson(randNick(personWay),sizeMassive,maxSizePassword));
+    public static ArrayList arrP = new ArrayList(arrayListPerson(randNick(personWay),sizeMassive,maxSizePassword));
+    public static HashSet hSetP = new HashSet(hashSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
+    public static TreeSet tSetP = new TreeSet(treeSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
+
+//сортировка коллекций
+    public static void sortCollect(){
+
+        linkA.sort(comporatorSizeAgeNick);
+        arrA.sort(comporatorSizeAgeNick);
+        List<Animal> listA = new ArrayList<>(hSetA);
+        listA.sort(comporatorSizeAgeNick);
+        //tSetA                                     //уже отсортирован
+
+        linkP.sort(comporatorSizePasswordNick);
+        arrP.sort(comporatorSizePasswordNick);
+        List<Person> listP = new ArrayList<>(hSetP);
+        listP.sort(comporatorSizePasswordNick);
+        //tSetP                                     //уже отсортирован
+    }
+
+//метод итератора Iterator
+    public static long iterator (Collection collection){
+        long setTime = System.currentTimeMillis();
+        Iterator iterator = collection.iterator();
+        while(iterator.hasNext()) {
+            iterator.next();
+        }
+        return (System.currentTimeMillis()-setTime);
+    }
+
+//метод итератора For
+    public static long iteratorFor (Collection collection){
+        long setTime = System.currentTimeMillis();
+        for (int i = 0; i < collection.size(); i++) {
+            collection.equals(i);
+        }
+        return (System.currentTimeMillis()-setTime);
+    }
+
+//метод итератора remove
+    public static long iteratorRemove (Collection collection){
+        long setTime = System.currentTimeMillis();
+        Iterator iterator = collection.iterator();
+        while(iterator.hasNext()) {
+            iterator.next();
+            iterator.remove();
+        }
+        return (System.currentTimeMillis()-setTime);
+    }
+
+//метод итератора For remove
+    public static long iteratorForRemove (Collection collection){
+        long setTime = System.currentTimeMillis();
+        for (int i = 0; i < collection.size(); i++) {
+            collection.remove(i);
+        }
+        return (System.currentTimeMillis()-setTime);
+    }
+
+//расчет времени выполнения итерирования (Iterator)
     public static void timeWorkIterator(){
 
-//расчет времени выполнения итерирования Animal(Iterator)
-        long[] iterListAnimal = new long[4];
+        long[] arr1 = new long[4];
+        long[] arr2 = new long[4];
 
-        LinkedList linkA = new LinkedList(linkListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        long setTreeTime = System.currentTimeMillis();
-        Iterator<Animal> iteratorLlA = linkA.iterator();
-        while(iteratorLlA.hasNext()) {
-            iteratorLlA.next();
-        }
-        iterListAnimal[0] = (System.currentTimeMillis()-setTreeTime);
+        arr1[0] = iterator(linkA);
+        arr1[1] = iterator(arrA);
+        arr1[2] = iterator(hSetA);
+        arr1[3] = iterator(tSetA);
 
-        ArrayList arrA = new ArrayList(arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Animal> iteratorALA = arrA.iterator();
-        while(iteratorALA.hasNext()) {
-            iteratorALA.next();
-        }
-        iterListAnimal[1] = (System.currentTimeMillis()-setTreeTime);
+        arr2[0] = iterator(linkP);
+        arr2[1] = iterator(arrP);
+        arr2[2] = iterator(hSetP);
+        arr2[3] = iterator(tSetP);
 
-       HashSet hSetA = new HashSet(hashSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-       setTreeTime = System.currentTimeMillis();
-       Iterator<Animal> iteratorHSA = hSetA.iterator();
-       while(iteratorHSA.hasNext()) {
-           iteratorHSA.next();
-       }
-       iterListAnimal[2] = (System.currentTimeMillis()-setTreeTime);
-
-       TreeSet tSetA = new TreeSet(treeSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-       setTreeTime = System.currentTimeMillis();
-       Iterator<Animal> iteratorTSA = tSetA.iterator();
-       while(iteratorTSA.hasNext()) {
-           iteratorTSA.next();
-       }
-       iterListAnimal[3] = (System.currentTimeMillis()-setTreeTime);
-
-//расчет времени выполнения итерирования Person(Iterator)
-        long[] iterListPerson = new long[4];
-
-        LinkedList linkP = new LinkedList(linkListPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Person> iteratorLlP = linkP.iterator();
-        while(iteratorLlP.hasNext()) {
-            iteratorLlP.next();
-        }
-        iterListPerson[0] = (System.currentTimeMillis()-setTreeTime);
-
-        ArrayList arrP = new ArrayList(arrayListPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Person> iteratorALP = arrP.iterator();
-        while(iteratorALP.hasNext()) {
-            iteratorALP.next();
-        }
-        iterListPerson[1] = (System.currentTimeMillis()-setTreeTime);
-
-        HashSet hSetP = new HashSet(hashSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Person> iteratorHSP = hSetP.iterator();
-        while(iteratorHSP.hasNext()) {
-            iteratorHSP.next();
-        }
-        iterListPerson[2] = (System.currentTimeMillis()-setTreeTime);
-
-        TreeSet tSetP = new TreeSet(treeSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Person> iteratorTSP = tSetP.iterator();
-          while(iteratorTSP.hasNext()) {
-              iteratorTSP.next();
-          }
-        iterListPerson[3] = (System.currentTimeMillis()-setTreeTime);
-
-        System.out.println("Время на итерирование коллекции:");
-        System.out.print("Animal"+"\t");
-        for (long i :iterListAnimal) {
-            System.out.print(i+"\t\t\t");
-        }
-        System.out.println();
-        System.out.print("Person"+"\t");
-        for (long i : iterListPerson) {
-            System.out.print(i+"\t\t\t");
-        }
-        System.out.println();
-
+        String name = "Время выполнения итерирования(через iterator) коллекций классов Animal и Person";
+        printResult(arr1,arr2,name);
     }
 
+//расчет времени выполнения итерирования (For)
+    public static void timeWorkIteratorFor(){
 
-public static void timeWorkIteratorFor(){
+        long[] arr1 = new long[4];
+        long[] arr2 = new long[4];
 
-//расчет времени выполнения итерирования Animal(Iterator)
-        long[] iterListAnimal = new long[4];
+        arr1[0] = iteratorFor(linkA);
+        arr1[1] = iteratorFor(arrA);
+        arr1[2] = iteratorFor(hSetA);
+        arr1[3] = iteratorFor(tSetA);
 
-        LinkedList linkA = new LinkedList(linkListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        long setTreeTime = System.currentTimeMillis();
-        Iterator<Animal> iteratorLlA = linkA.iterator();
-        for (int i = 0; i < linkA.size(); i++) {
-            linkA.get(i);
-        }
-        iterListAnimal[0] = (System.currentTimeMillis()-setTreeTime);
+        arr2[0] = iteratorFor(linkP);
+        arr2[1] = iteratorFor(arrP);
+        arr2[2] = iteratorFor(hSetP);
+        arr2[3] = iteratorFor(tSetP);
 
-        ArrayList arrA = new ArrayList(arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < arrA.size(); i++) {
-            arrA.get(i);
-        }
-        iterListAnimal[1] = (System.currentTimeMillis()-setTreeTime);
-
-        HashSet hSetA = new HashSet(hashSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < hSetA.size(); i++) {
-            hSetA.isEmpty();
-        }
-        iterListAnimal[2] = (System.currentTimeMillis()-setTreeTime);
-
-        TreeSet tSetA = new TreeSet(treeSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < tSetA.size(); i++) {
-            tSetA.isEmpty();
-        }
-        iterListAnimal[3] = (System.currentTimeMillis()-setTreeTime);
-
-//расчет времени выполнения итерирования Person(Iterator)
-        long[] iterListPerson = new long[4];
-
-        LinkedList linkP = new LinkedList(linkListPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < linkP.size(); i++) {
-        linkP.get(i);
-        }
-        iterListPerson[0] = (System.currentTimeMillis()-setTreeTime);
-
-        ArrayList arrP = new ArrayList(arrayListPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < arrP.size(); i++) {
-        arrP.get(i);
-        }
-        iterListPerson[1] = (System.currentTimeMillis()-setTreeTime);
-
-        HashSet hSetP = new HashSet(hashSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < hSetP.size(); i++) {
-        hSetP.isEmpty();
-        }
-        iterListPerson[2] = (System.currentTimeMillis()-setTreeTime);
-
-        TreeSet tSetP = new TreeSet(treeSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < tSetP.size(); i++) {
-        tSetP.isEmpty();
-        }
-        iterListPerson[3] = (System.currentTimeMillis()-setTreeTime);
-
-        System.out.println("Время на итерирование коллекции(через fori):");
-        System.out.print("Animal"+"\t");
-        for (long i :iterListAnimal) {
-            System.out.print(i+"\t\t\t");
-        }
-        System.out.println();
-        System.out.print("Person"+"\t");
-        for (long i : iterListPerson) {
-            System.out.print(i+"\t\t\t");
-        }
-        System.out.println();
-
+        String name = "Время выполнения итерирования(через for) коллекций классов Animal и Person";
+        printResult(arr1,arr2,name);
     }
 
-
-//время удаления элементов
+//расчет времени удаление элементов итерирования (Iterator)
     public static void timeWorkIteratorRemove(){
 
-//расчет времени выполнения итерирования Animal(Iterator)
-        long[] iterListAnimal = new long[4];
+        long[] arr1 = new long[4];
+        long[] arr2 = new long[4];
 
-        LinkedList linkA = new LinkedList(linkListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        long setTreeTime = System.currentTimeMillis();
-        Iterator<Animal> iteratorLlA = linkA.iterator();
-        while(iteratorLlA.hasNext()) {
-            iteratorLlA.next();
-            iteratorLlA.remove();
-        }
-        iterListAnimal[0] = (System.currentTimeMillis()-setTreeTime);
+        arr1[0] = iteratorRemove(linkA);
+        arr1[1] = iteratorRemove(arrA);
+        arr1[2] = iteratorRemove(hSetA);
+        arr1[3] = iteratorRemove(tSetA);
 
-        ArrayList arrA = new ArrayList(arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Animal> iteratorALA = arrA.iterator();
-        while(iteratorALA.hasNext()) {
-            iteratorALA.next();
-            iteratorALA.remove();
-        }
-        iterListAnimal[1] = (System.currentTimeMillis()-setTreeTime);
+        arr2[0] = iteratorRemove(linkP);
+        arr2[1] = iteratorRemove(arrP);
+        arr2[2] = iteratorRemove(hSetP);
+        arr2[3] = iteratorRemove(tSetP);
 
-        HashSet hSetA = new HashSet(hashSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Animal> iteratorHSA = hSetA.iterator();
-        while(iteratorHSA.hasNext()) {
-            iteratorHSA.next();
-            iteratorHSA.remove();
-        }
-        iterListAnimal[2] = (System.currentTimeMillis()-setTreeTime);
-
-        TreeSet tSetA = new TreeSet(treeSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Animal> iteratorTSA = tSetA.iterator();
-        while(iteratorTSA.hasNext()) {
-            iteratorTSA.next();
-            iteratorTSA.remove();
-        }
-        iterListAnimal[3] = (System.currentTimeMillis()-setTreeTime);
-
-//расчет времени выполнения итерирования Person(Iterator)
-        long[] iterListPerson = new long[4];
-
-        LinkedList linkP = new LinkedList(linkListPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Person> iteratorLlP = linkP.iterator();
-        while(iteratorLlP.hasNext()) {
-            iteratorLlP.next();
-            iteratorLlP.remove();
-        }
-        iterListPerson[0] = (System.currentTimeMillis()-setTreeTime);
-
-        ArrayList arrP = new ArrayList(arrayListPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Person> iteratorALP = arrP.iterator();
-        while(iteratorALP.hasNext()) {
-            iteratorALP.next();
-            iteratorALP.remove();
-        }
-        iterListPerson[1] = (System.currentTimeMillis()-setTreeTime);
-
-        HashSet hSetP = new HashSet(hashSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Person> iteratorHSP = hSetP.iterator();
-        while(iteratorHSP.hasNext()) {
-            iteratorHSP.next();
-            iteratorHSP.remove();
-        }
-        iterListPerson[2] = (System.currentTimeMillis()-setTreeTime);
-
-        TreeSet tSetP = new TreeSet(treeSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        Iterator<Person> iteratorTSP = tSetP.iterator();
-        while(iteratorTSP.hasNext()) {
-            iteratorTSP.next();
-            iteratorTSP.remove();
-        }
-        iterListPerson[3] = (System.currentTimeMillis()-setTreeTime);
-
-        System.out.println("Время на удаление элементов через итерирование коллекции:");
-        System.out.print("Animal"+"\t");
-        for (long i :iterListAnimal) {
-            System.out.print(i+"\t\t\t");
-        }
-        System.out.println();
-        System.out.print("Person"+"\t");
-        for (long i : iterListPerson) {
-            System.out.print(i+"\t\t\t");
-        }
-        System.out.println();
-
+        String name = "Время выполнения удаление элементов(через iterator) коллекций классов Animal и Person";
+        printResult(arr1,arr2,name);
     }
 
-
+//расчет времени удаление элементов итерирования (For)
     public static void timeWorkIteratorForRemove(){
 
-//расчет времени выполнения итерирования Animal(Iterator)
-        long[] iterListAnimal = new long[4];
+        long[] arr1 = new long[4];
+        long[] arr2 = new long[4];
 
-        LinkedList linkA = new LinkedList(linkListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        long setTreeTime = System.currentTimeMillis();
-        Iterator<Animal> iteratorLlA = linkA.iterator();
-        for (int i = 0; i < linkA.size(); i++) {
-            linkA.remove(i);
-        }
-        iterListAnimal[0] = (System.currentTimeMillis()-setTreeTime);
+        arr1[0] = iteratorForRemove(linkA);
+        arr1[1] = iteratorForRemove(arrA);
+        arr1[2] = iteratorForRemove(hSetA);
+        //arr1[3] = iteratorForRemove(tSetA);
 
-        ArrayList arrA = new ArrayList(arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < arrA.size(); i++) {
-            arrA.remove(i);
-        }
-        iterListAnimal[1] = (System.currentTimeMillis()-setTreeTime);
+        arr2[0] = iteratorForRemove(linkP);
+        arr2[1] = iteratorForRemove(arrP);
+        arr2[2] = iteratorForRemove(hSetP);
+        //arr2[3] = iteratorForRemove(tSetP);
 
-        HashSet hSetA = new HashSet(hashSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < hSetA.size(); i++) {
-            hSetA.remove(i);
-        }
-        iterListAnimal[2] = (System.currentTimeMillis()-setTreeTime);
-
-        TreeSet tSetA = new TreeSet(treeSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < tSetA.size(); i++) {
-            //tSetA.remove(i);
-        }
-        iterListAnimal[3] = (System.currentTimeMillis()-setTreeTime);
-
-//расчет времени выполнения итерирования Person(Iterator)
-        long[] iterListPerson = new long[4];
-
-        LinkedList linkP = new LinkedList(linkListPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < linkP.size(); i++) {
-            linkP.remove(i);
-        }
-        iterListPerson[0] = (System.currentTimeMillis()-setTreeTime);
-
-        ArrayList arrP = new ArrayList(arrayListPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < arrP.size(); i++) {
-            arrP.remove(i);
-        }
-        iterListPerson[1] = (System.currentTimeMillis()-setTreeTime);
-
-        HashSet hSetP = new HashSet(hashSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < hSetP.size(); i++) {
-            hSetP.remove(i);
-        }
-        iterListPerson[2] = (System.currentTimeMillis()-setTreeTime);
-
-        TreeSet tSetP = new TreeSet(treeSetPerson(randNick(personWay),sizeMassive,maxSizePassword));
-        setTreeTime = System.currentTimeMillis();
-        for (int i = 0; i < tSetP.size(); i++) {
-            //tSetP.remove(i);
-        }
-        iterListPerson[3] = (System.currentTimeMillis()-setTreeTime);
-
-        System.out.println("Время на удаление через итерирование коллекции(через fori):");
-        System.out.print("Animal"+"\t");
-        for (long i :iterListAnimal) {
-            System.out.print(i+"\t\t\t");
-        }
-        System.out.println();
-        System.out.print("Person"+"\t");
-        for (long i : iterListPerson) {
-            System.out.print(i+"\t\t\t");
-        }
-        System.out.println();
-
+        String name = "Время выполнения итерирования(через for) коллекций классов Animal и Person";
+        printResult(arr1,arr2,name);
     }
-
 
         public static  void main(String[] args) {
 
@@ -549,7 +336,6 @@ public static void timeWorkIteratorFor(){
         //arrayListAnimal(randNick(animalWay),sizeMassive,maxSizeAge);
         //hashSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge);
         //treeSetAnimal(randNick(animalWay),sizeMassive,maxSizeAge);
-
         //linkListPerson(randNick(personWay),sizeMassive,maxSizePassword);
         //arrayListPerson(randNick(personWay),sizeMassive,maxSizePassword);
         //hashSetPerson(randNick(personWay),sizeMassive,maxSizePassword);
@@ -557,9 +343,8 @@ public static void timeWorkIteratorFor(){
 
 //сортировка коллекций
         //sortCollect();
-
 //вывод в печать время заполнения коллекций
-        ///timeWorkAdd();
+        //timeWorkAdd();
 //вывод в печать время итерирования коллекций(Iterator)
         //timeWorkIterator();
 //вывод в печать время итерирования коллекций(for)
@@ -567,8 +352,30 @@ public static void timeWorkIteratorFor(){
 //вывод в печать время удаление итерирования коллекций(Iterator)
         //timeWorkIteratorRemove();
 //вывод в печать время удаление итерирования коллекций(For)
-        //timeWorkIteratorForRemove();
+        timeWorkIteratorForRemove();                          //не работает treeset
 
-        //необходима оптимизация кода, нужно переиспользовать, сократить
+
+            /*
+   Время на заполнение коллекций:
+Класс	    LinkedList	    ArrayList	    HashSet		    TreeSet
+Animal	    160			    84			    452			    760
+Person	    445			    322			    786			    1427
+
+Время на итерирование коллекции:
+Animal	    15			    8			    31			    6
+Person	    7			    10			    21			    7
+
+Время на итерирование коллекции(через fori):
+Animal	    471166			8			    6			    6
+Person	    476180			8			    6			    5
+
+Время на удаление элементов через итерирование коллекции:
+Animal	    21			    52511			32			    13
+Person	    14			    51592			30			    12
+
+Время на удаление через итерирование коллекции(через fori):
+Animal	    210598			26065			144			    3
+Person	    202375			25689			21			    5
+             */
     }
 }
