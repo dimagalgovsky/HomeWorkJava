@@ -7,9 +7,9 @@ import java.util.Scanner;
 public class UtilsMetod {
     Hanoi hanoi = new Hanoi();
 
+//ввод начальных условий
     public int[] inputData() {
         int[] result = new int[2];
-
         Scanner in = new Scanner(System.in);
         System.out.println("Выберите режим игры: " + "\n" + "1 - ручной" + "\n" + "2 - автоматический");
         result[0] = in.nextInt();
@@ -25,6 +25,24 @@ public class UtilsMetod {
         return result;
     }
 
+//метод вывода в консоль массива
+    public void printArray(int[][] arr) {
+        System.out.print("-------------------------------");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println();
+            for (int j = 0; j < 3; j++) {
+                if (arr[i][j] == 0) {
+                    System.out.print(" " + "*" + " ");
+                } else {
+                    System.out.print(" " + arr[i][j] + " ");
+                }
+            }
+        }
+        System.out.println();
+        System.out.println("-------------------------------");
+    }
+
+//проверка на окончание игры
     public boolean cheakFinish(int[][] arr) {
         boolean endGame = false;
         int count = 0;
@@ -39,11 +57,12 @@ public class UtilsMetod {
         return endGame;
     }
 
-    public boolean cheakMotion(int[][] arr, int num) {
+//проверка на возможность хода
+    public boolean cheakMotion(int[][] arr, int outNum, int inNum, int column, int column1) {
         boolean result = true;
-
-        for (int i = 0; i < arr.length - 1; i++) {
-            if (arr[i][num] > arr[i + 1][num]) {
+        if (inNum != arr.length - 1) {
+            inNum++;
+            if (arr[outNum][column] > arr[inNum][column1]) {
                 result = false;
             }
         }
