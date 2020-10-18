@@ -60,7 +60,7 @@ public class UtilsMetod {
 //проверка на возможность хода
     public boolean cheakMotion(int[][] arr, int outNum, int inNum, int column, int column1) {
         boolean result = true;
-        if (inNum != arr.length - 1) {
+        if ((inNum != arr.length - 1) && (inNum != 0)) {
             inNum++;
             if (arr[outNum][column] > arr[inNum][column1]) {
                 result = false;

@@ -2,7 +2,8 @@ package hanoi;
 
 import hanoi.utils.UtilsMetod;
 
-import static hanoi.Hanoi.game;
+import static hanoi.Hanoi.gameAuto;
+import static hanoi.Hanoi.gameHand;
 
 public class GameMain {
     public static void main(String[] args) {
@@ -11,10 +12,10 @@ public class GameMain {
         int[] result = utils.inputData();
 
         if (result[0] == 1) {
-            game(result[1]);
+            gameHand(result[1]);
         }
         else {
-            System.out.println("Извините, втоматический режим игры в разработке");
+            gameAuto(result[1]);
         }
     }
 }
